@@ -1,0 +1,17 @@
+<!doctype html>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3" style="background-color: black; color: white; padding: 20px; border-radius: 5px;">
+    <h2 style="margin-bottom: 20px;">버전 정보</h2>
+    <div style="font-weight: bold;">
+        <p><strong>버전:</strong> <span th:text="${version}"></span></p>
+        <p><strong>출시일:</strong> <span th:text="${releaseDate}"></span></p>
+        <p><strong>작성자:</strong> <span th:text="${author}"></span></p>
+    </div>
+    <div class="text-center">
+        <img src="SB.jpg" class="img-fluid" alt="스프링부트">
+    </div>
+    <div class="text-center">
+        <label class="form-label">POWERD BY. SPRING BOOT</label>
+    </div>
+</div>
+</html>

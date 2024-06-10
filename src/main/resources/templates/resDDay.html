@@ -8,16 +8,21 @@
             <input type="text" class="form-control" id="resNumber" name="resNumber" required>
         </div>
         <div class="mb-3">
-            <label for="resDate" class="form-label">예약일</label>
-            <input type="date" class="form-control" id="resDate" name="resDate" required>
-        </div>
-        <div class="mb-3">
-            <label for="useBeginDate" class="form-label">사용 시작일</label>
-            <input type="date" class="form-control" id="useBeginDate" name="useBeginDate" required>
-        </div>
-        <div class="mb-3">
-            <label for="returnDate" class="form-label">반납일</label>
-            <input type="date" class="form-control" id="returnDate" name="returnDate" required>
+            <label for="returnMonth" class="form-label">시용기간 (오늘부터 이용하실 수 있습니다)</label>
+            <select class="form-control" id="returnMonth" name="returnMonth" required>
+                <option value="1">1개월</option>
+                <option value="2">2개월</option>
+                <option value="3">3개월</option>
+                <option value="4">4개월</option>
+                <option value="5">5개월</option>
+                <option value="6">6개월</option>
+                <option value="7">7개월</option>
+                <option value="8">8개월</option>
+                <option value="9">9개월</option>
+                <option value="10">10개월</option>
+                <option value="11">11개월</option>
+                <option value="12">12개월</option>
+            </select>
         </div>
         <input type="hidden" id="carNumber" name="carNumber" th:value="${carNumber}">
         <input type="hidden" id="memberId" name="memberId" th:value="${memberId}">

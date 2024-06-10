@@ -71,13 +71,13 @@ public class Rescontroller
     }
 
     // 예약D-Day
-    @GetMapping("/res/register")
+    @GetMapping("/res/register0")
     public String resForm2(Model model) {
-        return "resRegister";
+        return "resRegister0";
     }
 
     // 차량 번호와 회원 아이디 확인
-    @PostMapping("/res/check")
+    @PostMapping("/res/check0")
     public String checkCarAndMember2(@RequestParam("carNumber") String carNumber, @RequestParam("memberId") String memberId, Model model) {
         if (resService.isCarNumberDuplicate(carNumber) && resService.isMemberIdDuplicate(memberId)) {
             model.addAttribute("carNumber", carNumber);
@@ -85,14 +85,13 @@ public class Rescontroller
             return "resDDay";
         } else {
             model.addAttribute("errorMessage", "차량 번호 또는 회원 아이디가 존재하지 않습니다.");
-            return "resRegister";
+            return "resRegister0";
         }
     }
     // 예약 D-Day 두 번째 단계
     @PostMapping("/res/regDDay")
-    public String registerRes2(@RequestParam("resNumber") String resNumber, @RequestParam("resDate") LocalDate resDate,
-                              @RequestParam("useBeginDate") LocalDate useBeginDate,
-                              @RequestParam("returnDate") LocalDate returnDate,
+    public String registerRes2(@RequestParam("resNumber") String resNumber,
+                              @RequestParam("returnMonth") int returnMonth,
                               @RequestParam("carNumber") String carNumber,
                               @RequestParam("memberId") String memberId, Model model) {
         try {
@@ -100,8 +99,11 @@ public class Rescontroller
                 model.addAttribute("errorMessage", "이미 존재하는 예약번호입니다.");
                 return "resDDay";
             }
+            LocalDate currentDate = LocalDate.now();
+            LocalDate returnDate = currentDate.plusDays(returnMonth * 30L);
+
             // 예약 등록
-            resService.createRes(resNumber, resDate, useBeginDate, returnDate, carNumber, memberId);
+            resService.createRes(resNumber, currentDate, currentDate, returnDate, carNumber, memberId);
             // 예약 성공 메시지를 모델에 추가
             model.addAttribute("successMessage", "예약이 성공적으로 등록되었습니다.");
             // 성공 페이지로 이동
@@ -196,5 +198,13 @@ public class Rescontroller
             model.addAttribute("errorMessage", "예약 삭제 중 오류가 발생했습니다.");
         }
         return "resDelete";
+    }
+
+    @GetMapping("/version")
+    public String versionInfo(Model model) {
+        model.addAttribute("version", "v1.0");
+        model.addAttribute("releaseDate", "24.06.10 Fri");
+        model.addAttribute("author", "심기윤");
+        return "version";
     }
 }

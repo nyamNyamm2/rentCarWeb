@@ -80,4 +80,16 @@ public class ResService
     public void deleteResByResNumber(String resNumber) {
         resRepository.deleteById(resNumber);
     }
+
+    // 예약자의 아이디 변경
+    public void updateResMember(String resNumber, String newMemberId) {
+        ResForm res = findResByResNumber(resNumber);
+        if (res != null) {
+            MemberForm newMember = memberRepository.findById(newMemberId).orElseThrow(() -> new IllegalArgumentException("Invalid member ID"));
+            res.setMember(newMember);
+            resRepository.save(res);
+        } else {
+            throw new IllegalArgumentException("예약번호가 존재하지 않습니다.");
+        }
+    }
 }

@@ -1,0 +1,45 @@
+<!doctype html>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <h2>예약 양도</h2>
+
+    <!-- 예약번호 입력 폼 -->
+    <form action="/res/send" method="post" th:if="${res == null}">
+        <div class="mb-3">
+            <label for="resNumber" class="form-label">예약번호</label>
+            <input type="text" class="form-control" id="resNumber" name="resNumber" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="background-color: #20c997">조회</button>
+    </form>
+
+    <!-- 오류 메시지 출력 -->
+    <div th:if="${errorMessage != null}">
+        <p th:text="${errorMessage}" class="text-danger"></p>
+    </div>
+
+    <!-- 예약자 아이디 변경 폼 -->
+    <form action="/res/send/update" method="post" th:if="${res != null}">
+        <div class="mb-3">
+            <label for="resNumber" class="form-label">예약번호 (수정불가)</label>
+            <input type="text" class="form-control" id="resNumber" name="resNumber" th:value="${res.resNumber}" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="currentMemberId" class="form-label">양도 전 예약자 아이디 (수정불가)</label>
+            <input type="text" class="form-control" id="currentMemberId" th:value="${res.member.id}" readonly>
+        </div>
+
+        <div class="mb-3">
+            <label for="newMemberId" class="form-label">양도할 예약자 아이디</label>
+            <input type="text" class="form-control" id="newMemberId" name="newMemberId" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="background-color: #20c997">변경</button>
+    </form>
+
+    <!-- 성공 메시지 출력 -->
+    <div th:if="${successMessage != null}" class="mt-3">
+        <p th:text="${successMessage}" class="text-success"></p>
+    </div>
+</div>
+</html>

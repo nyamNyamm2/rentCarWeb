@@ -1,0 +1,22 @@
+<!doctype html>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <h2>예약 등록</h2>
+    <form action="/res/check0" method="post">
+        <div class="mb-3">
+            <label for="carNumber" class="form-label">차량번호</label>
+            <input type="text" class="form-control" id="carNumber" name="carNumber" required>
+        </div>
+        <div class="mb-3">
+            <label for="memberId" class="form-label">회원 아이디</label>
+            <input type="text" class="form-control" id="memberId" name="memberId" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="background-color: #20c997">조회</button>
+    </form>
+
+    <!-- 오류 메시지 출력 -->
+    <div th:if="${errorMessage != null}" class="mt-3">
+        <p th:text="${errorMessage}" class="text-danger"></p>
+    </div>
+</div>
+</html>
