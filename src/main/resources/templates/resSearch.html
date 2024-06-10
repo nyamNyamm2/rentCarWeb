@@ -1,0 +1,74 @@
+<!doctype html>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <h2>예약 조회</h2>
+    <form action="/res/search" method="post">
+        <div class="mb-3">
+            <label for="resNumber" class="form-label">예약번호</label>
+            <input type="text" class="form-control" id="resNumber" name="resNumber">
+        </div>
+        <button type="submit" class="btn btn-primary" style="background-color: #20c997">조회</button>
+    </form>
+
+    <div th:if="${ress != null}" class="mt-5">
+        <h3>예약 정보</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>예약번호</th>
+                <th>차량번호</th>
+                <th>예약일</th>
+                <th>사용 시작일</th>
+                <th>반납일</th>
+                <th>아이디</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${ress.size() == 0}">
+                <td colspan="8">예약 정보가 존재하지 않습니다.</td>
+            </tr>
+            <tr th:each="ress : ${ress}">
+                <td th:text="${ress.resNumber}"></td>
+                <td th:text="${ress.car.carNumber}"></td>
+                <td th:text="${ress.resDate}"></td>
+                <td th:text="${ress.useBeginDate}"></td>
+                <td th:text="${ress.returnDate}"></td>
+                <td th:text="${ress.member.id}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 예약 정보 출력 -->
+    <div th:if="${res != null}" class="mt-5">
+        <h3>예약 정보</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>예약번호</th>
+                <th>차량번호</th>
+                <th>예약일</th>
+                <th>사용 시작일</th>
+                <th>반납일</th>
+                <th>아이디</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${res.resNumber}"></td>
+                <td th:text="${res.car.carNumber}"></td>
+                <td th:text="${res.resDate}"></td>
+                <td th:text="${res.useBeginDate}"></td>
+                <td th:text="${res.returnDate}"></td>
+                <td th:text="${res.member.id}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 오류 메시지 출력 -->
+    <div th:if="${errorMessage != null}">
+        <p th:text="${errorMessage}" class="text-danger"></p>
+    </div>
+</div>
+</html>

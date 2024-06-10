@@ -1,0 +1,70 @@
+<!doctype html>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <h2>차량 조회</h2>
+    <form action="/car/search" method="post">
+        <div class="mb-3">
+            <label for="carNumber" class="form-label">차량번호</label>
+            <input type="text" class="form-control" id="carNumber" name="carNumber">
+        </div>
+        <button type="submit" class="btn btn-primary" style="background-color: #20c997">조회</button>
+    </form>
+
+    <div th:if="${cars != null}" class="mt-5">
+        <h3>차량 정보</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>차량번호</th>
+                <th>차량명</th>
+                <th>차색상</th>
+                <th>배기량</th>
+                <th>제조사</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${cars.size() == 0}">
+                <td colspan="5">차량 정보가 존재하지 않습니다.</td>
+            </tr>
+            <tr th:each="car : ${cars}">
+                <td th:text="${car.carNumber}"></td>
+                <td th:text="${car.carName}"></td>
+                <td th:text="${car.carColor}"></td>
+                <td th:text="${car.carSize}"></td>
+                <td th:text="${car.carMaker}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 차량 정보 출력 -->
+    <div th:if="${car != null}" class="mt-5">
+        <h3>차량 정보</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>차량번호</th>
+                <th>차량명</th>
+                <th>차색상</th>
+                <th>배기량</th>
+                <th>제조사</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${car.carNumber}"></td>
+                <td th:text="${car.carName}"></td>
+                <td th:text="${car.carColor}"></td>
+                <td th:text="${car.carSize}"></td>
+                <td th:text="${car.carMaker}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 오류 메시지 출력 -->
+    <div th:if="${errorMessage != null}">
+        <p th:text="${errorMessage}" class="text-danger"></p>
+    </div>
+</div>
+</html>

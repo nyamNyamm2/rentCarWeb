@@ -1,0 +1,51 @@
+<!doctype html>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <h2>예약수정</h2>
+
+    <!-- 예약번호 입력 폼 -->
+    <form action="/res/modify" method="post" th:if="${res == null}">
+        <div class="mb-3">
+            <label for="resNumber" class="form-label">예약번호</label>
+            <input type="text" class="form-control" id="resNumber" name="resNumber" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="background-color: #20c997">조회</button>
+    </form>
+
+    <!-- 오류 메시지 출력 -->
+    <div th:if="${errorMessage != null}">
+        <p th:text="${errorMessage}" class="text-danger"></p>
+    </div>
+
+    <form action="/res/update" method="post" th:if="${res != null}">
+
+        <input type="hidden" name="resNumber" th:value="${res.resNumber}">
+
+        <div class="mb-3">
+            <label for="carNumber" class="form-label">차량번호</label>
+            <input type="text" class="form-control" id="carNumber" name="carNumber" th:value="${res.car.carNumber}" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="resDate" class="form-label">예약일</label>
+            <input type="date" class="form-control" id="resDate" name="resDate" th:value="${res.resDate}" required>
+        </div>
+        <div class="mb-3">
+            <label for="useBeginDate" class="form-label">사용 시작일</label>
+            <input type="date" class="form-control" id="useBeginDate" name="useBeginDate" th:value="${res.useBeginDate}" required>
+        </div>
+        <div class="mb-3">
+            <label for="returnDate" class="form-label">반납일</label>
+            <input type="date" class="form-control" id="returnDate" name="returnDate" th:value="${res.returnDate}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="background-color: #20c997">수정</button>
+    </form>
+
+
+
+    <!-- 성공 메시지 출력 -->
+    <div th:if="${successMessage != null}" class="mt-3">
+        <p th:text="${successMessage}" class="text-success"></p>
+    </div>
+</div>
+</html>

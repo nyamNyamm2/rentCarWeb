@@ -1,0 +1,47 @@
+<!doctype html>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <h2>차량수정</h2>
+
+    <!-- 차량번호 입력 폼 -->
+    <form action="/car/modify" method="post" th:if="${car == null}">
+        <div class="mb-3">
+            <label for="carNumber" class="form-label">차량번호</label>
+            <input type="text" class="form-control" id="carNumber" name="carNumber" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="background-color: #20c997">조회</button>
+    </form>
+
+    <!-- 오류 메시지 출력 -->
+    <div th:if="${errorMessage != null}" class="mt-3">
+        <p th:text="${errorMessage}" class="text-danger"></p>
+    </div>
+
+    <!-- 차량 정보 수정 폼 -->
+    <form action="/car/update" method="post" th:if="${car != null}">
+        <input type="hidden" name="carNumber" th:value="${car.carNumber}">
+        <div class="mb-3">
+            <label for="carName" class="form-label">차이름</label>
+            <input type="text" class="form-control" id="carName" name="carName" th:value="${car.carName}" required>
+        </div>
+        <div class="mb-3">
+            <label for="carColor" class="form-label">차색상</label>
+            <input type="text" class="form-control" id="carColor" name="carColor" th:value="${car.carColor}" required>
+        </div>
+        <div class="mb-3">
+            <label for="carSize" class="form-label">배기량</label>
+            <input type="text" class="form-control" id="carSize" name="carSize" th:value="${car.carSize}" required>
+        </div>
+        <div class="mb-3">
+            <label for="carMaker" class="form-label">제조사</label>
+            <input type="text" class="form-control" id="carMaker" name="carMaker" th:value="${car.carMaker}" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="background-color: #20c997">수정하기</button>
+    </form>
+
+    <!-- 성공 메시지 출력 -->
+    <div th:if="${successMessage != null}" class="mt-3">
+        <p th:text="${successMessage}" class="text-success"></p>
+    </div>
+</div>
+</html>

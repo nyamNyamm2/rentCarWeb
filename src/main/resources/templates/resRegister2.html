@@ -1,0 +1,37 @@
+<!doctype html>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <h2>예약 등록</h2>
+    <form action="/res/register2" method="post">
+        <div class="mb-3">
+            <label for="resNumber" class="form-label">예약번호</label>
+            <input type="text" class="form-control" id="resNumber" name="resNumber" required>
+        </div>
+        <div class="mb-3">
+            <label for="resDate" class="form-label">예약일</label>
+            <input type="date" class="form-control" id="resDate" name="resDate" required>
+        </div>
+        <div class="mb-3">
+            <label for="useBeginDate" class="form-label">사용 시작일</label>
+            <input type="date" class="form-control" id="useBeginDate" name="useBeginDate" required>
+        </div>
+        <div class="mb-3">
+            <label for="returnDate" class="form-label">반납일</label>
+            <input type="date" class="form-control" id="returnDate" name="returnDate" required>
+        </div>
+        <input type="hidden" id="carNumber" name="carNumber" th:value="${carNumber}">
+        <input type="hidden" id="memberId" name="memberId" th:value="${memberId}">
+        <button type="submit" class="btn btn-primary" style="background-color: #20c997">등록</button>
+
+        <!-- 성공 메시지 출력 -->
+        <div th:if="${successMessage != null}" class="mt-3">
+            <p th:text="${successMessage}" class="text-success"></p>
+        </div>
+
+        <!-- 오류 메시지 출력 -->
+        <div th:if="${errorMessage != null}" class="mt-3">
+            <p th:text="${errorMessage}" class="text-danger"></p>
+        </div>
+    </form>
+</div>
+</html>

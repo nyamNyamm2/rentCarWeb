@@ -1,0 +1,25 @@
+<!doctype html>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+  <h2>예약삭제</h2>
+
+  <!-- 예약번호 입력 폼 -->
+  <form action="/res/delete" method="post">
+    <div class="mb-3">
+      <label for="resNumber" class="form-label">예약번호</label>
+      <input type="text" class="form-control" id="resNumber" name="resNumber" required>
+    </div>
+    <button type="submit" class="btn btn-danger" style="background-color: #20c997">삭제</button>
+  </form>
+
+  <!-- 오류 메시지 출력 -->
+  <div th:if="${errorMessage != null}" class="mt-3">
+    <p th:text="${errorMessage}" class="text-danger"></p>
+  </div>
+
+  <!-- 성공 메시지 출력 -->
+  <div th:if="${successMessage != null}" class="mt-3">
+    <p th:text="${successMessage}" class="text-success"></p>
+  </div>
+</div>
+</html>

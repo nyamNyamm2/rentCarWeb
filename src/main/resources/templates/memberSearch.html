@@ -1,0 +1,72 @@
+<!doctype html>
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <h2>회원조회</h2>
+    <form action="/member/search" method="post">
+        <div class="mb-3">
+            <label for="id" class="form-label">회원 아이디</label>
+            <input type="text" class="form-control" id="id" name="id">
+        </div>
+        <button type="submit" class="btn btn-primary" style="background-color: #20c997">조회</button>
+    </form>
+
+    <div th:if="${members != null}" class="mt-5">
+        <h3>회원 정보</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>아이디</th>
+                <th>비밀번호</th>
+                <th>이름</th>
+                <th>주소</th>
+                <th>전화번호</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${members.size() == 0}">
+                <td colspan="5">회원 정보가 존재하지 않습니다.</td>
+            </tr>
+            <tr th:each="member : ${members}">
+                <td th:text="${member.id}"></td>
+                <td th:text="${member.password}"></td>
+                <td th:text="${member.name}"></td>
+                <td th:text="${member.address}"></td>
+                <td th:text="${member.phoneNum}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 회원 정보 출력 -->
+    <div th:if="${member != null}" class="mt-5">
+        <h3>회원 정보</h3>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>아이디</th>
+                <th>비밀번호</th>
+                <th>이름</th>
+                <th>주소</th>
+                <th>전화번호</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text="${member.id}"></td>
+                <td th:text="${member.password}"></td>
+                <td th:text="${member.name}"></td>
+                <td th:text="${member.address}"></td>
+                <td th:text="${member.phoneNum}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <!-- 오류 메시지 출력 -->
+    <div th:if="${errorMessage != null}">
+        <p th:text="${errorMessage}" class="text-danger"></p>
+    </div>
+</div>
+</html>
