@@ -27,11 +27,11 @@
 
         <!-- 성공 메시지 출력 -->
         <div th:if="${successMessage != null}" class="mt-3">
-            <p th:text="${successMessage}" style="font-size: xxx-large; font-style: italic;" class="text-success" ></p>
+            <p th:text="${successMessage}" style="font-size: large; font-style: inherit;" class="text-success" ></p>
         </div>
 
         <!-- 에러 메시지 출력 -->
-        <p th:text="${errorMessage}" class="text-danger"></p>
+        <p th:text="${errorMessage}" class="text-danger" style="font-size: large; font-style: inherit;"></p>
     </form>
 </div>
 </html>

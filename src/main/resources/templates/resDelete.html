@@ -14,12 +14,12 @@
 
   <!-- 오류 메시지 출력 -->
   <div th:if="${errorMessage != null}" class="mt-3">
-    <p th:text="${errorMessage}" class="text-danger"></p>
+    <p th:text="${errorMessage}" class="text-danger" style="font-size: large; font-style: inherit;"></p>
   </div>
 
   <!-- 성공 메시지 출력 -->
   <div th:if="${successMessage != null}" class="mt-3">
-    <p th:text="${successMessage}" class="text-success"></p>
+    <p th:text="${successMessage}" class="text-success" style="font-size: large; font-style: inherit;"></p>
   </div>
 </div>
 </html>
