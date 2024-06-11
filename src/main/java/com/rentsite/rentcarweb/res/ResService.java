@@ -92,4 +92,6 @@ public class ResService
             throw new IllegalArgumentException("예약번호가 존재하지 않습니다.");
         }
     }
+
+
 }

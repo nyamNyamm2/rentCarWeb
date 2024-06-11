@@ -207,4 +207,34 @@ public class Rescontroller
         model.addAttribute("author", "심기윤");
         return "version";
     }
+
+    // 예약자 아이디 변경 화면으로 이동
+    @GetMapping("/res/send")
+    public String sendRes() {
+        return "resSend";
+    }
+
+    @PostMapping("/res/send")
+    public String sendRes(@RequestParam(value = "resNumber") String resNumber, Model model) {
+        ResForm res = resService.findResByResNumber(resNumber);
+        if (res != null) {
+            model.addAttribute("res", res);
+        } else {
+            model.addAttribute("errorMessage", "예약번호가 존재하지 않습니다.");
+        }
+        return "resSend";
+    }
+
+    @PostMapping("/res/send/update")
+    public String updateResMember(@RequestParam(value = "resNumber") String resNumber,
+                                  @RequestParam(value = "newMemberId") String newMemberId,
+                                  Model model) {
+        try {
+            resService.updateResMember(resNumber, newMemberId);
+            model.addAttribute("successMessage", "예약자의 아이디가 성공적으로 변경되었습니다.");
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "예약자 아이디 변경 중 오류가 발생했습니다.");
+        }
+        return "resSend";
+    }
 }

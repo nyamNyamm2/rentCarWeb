@@ -16,7 +16,7 @@ public class CarController {
     private CarService carService;
 
     @GetMapping("/car")
-    public String car()
+    public String carMenu()
     {
         return "carMenu";
     }
