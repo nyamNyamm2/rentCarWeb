@@ -2,7 +2,6 @@ package com.rentsite.rentcarweb.car;
 
 import java.util.*;
 import org.springframework.stereotype.Service;
-import org.springframework.dao.DuplicateKeyException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

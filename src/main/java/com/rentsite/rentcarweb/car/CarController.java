@@ -29,7 +29,7 @@ public class CarController
     }
 
     @PostMapping("/car/register")
-    public String registercar(Model model, @RequestParam(value="carNumber") String carNumber, @RequestParam(value="carName") String carName, @RequestParam
+    public String registerCar(Model model, @RequestParam(value="carNumber") String carNumber, @RequestParam(value="carName") String carName, @RequestParam
             (value="carColor")String carColor, @RequestParam(value="carSize") int carSize, @RequestParam(value="carMaker") String carMaker)
     {
         // 차량 중복 여부 확인
@@ -42,7 +42,7 @@ public class CarController
         {
             carService.registerCar(carNumber, carName, carColor, carSize, carMaker);
             model.addAttribute("success", "새로운 차량이 등록되었습니다");
-            return "carRegister"; // 차량등록 후 메인 페이지로 리다이렉트
+            return "carRegister"; // 차량 등록 성공 메시지 출력
         }
     }
 
@@ -87,13 +87,13 @@ public class CarController
 
     // 차량 수정
     @GetMapping("/car/modify")
-    public String editCar()
+    public String modiCar()
     {
         return "carModify";
     }
 
     @PostMapping("/car/modify")
-    public String editCar(@RequestParam(value = "carNumber") String carNumber, Model model)
+    public String modiCar(@RequestParam(value = "carNumber") String carNumber, Model model)
     {
         CarForm car = carService.findCarByCarNumber(carNumber);
         if (car != null)
